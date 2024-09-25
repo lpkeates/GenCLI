@@ -8,7 +8,7 @@ This section is mainly for when you want to make your own version. Keep in mind 
 Required:
 * pycli (Python 2.4+)
   ```sh
-  pip install pycli
+  pip install cmd
   ```
 Optional:
 * wikipedia (Python 2.6+/3.3+)
