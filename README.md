@@ -6,9 +6,9 @@ This section is mainly for when you want to make your own version. Keep in mind 
 
 ### Prequesites
 Required:
-* pycli (Python 2.4+)
+* cmd (complimentary of Python)
   ```sh
-  pip install cmd
+  import cmd
   ```
 Optional:
 * wikipedia (Python 2.6+/3.3+)
