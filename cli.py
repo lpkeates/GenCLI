@@ -1,9 +1,11 @@
+# Modules (`cmd` is mandatory, `json` is required if you want to allow for configurations)
 import cmd
 import wikipedia
 import random
 import json
 import time
 
+# Loads the json file (if you want to change the prompt, make sure to do `prompt = <prompt prefix>`)
 class myCLI(cmd.Cmd):
     with open("config.json", "r") as configcli:
         config = json.load(configcli)
@@ -22,18 +24,22 @@ Creator: Leon Peter Keates
 
 Type `help` for more commands."""
 
+    # Test command
     def do_ping(self, line):
         """Misc: Responds with 'Pong!'"""
         print('Pong!')
 
+    # The "killswitch" in case of an update.
     def do_terminate(self, line):
         """System: Terminates the CLI"""
         return True
-    
+        
+    # Another test command
     def do_hello(self, line):
         """Misc: Responds with 'Hello, world!'"""
         print('Hello, world!')
 
+    # Shows the about info about GenCLI. You can edit this if you may.
     def do_about(self, line):
         """System: Shows basic information about GenCLI"""
         print("""Name: GenCLI (Generic Command Line Interface)
@@ -44,6 +50,7 @@ Type `help` for more commands."""
         Language: en-GB (British English)
         Status: Active (since 15/05/2024)""")
 
+    # REQUIRES THE `wikipedia` MODULE.
     def do_wiki(self, line):
         """Tool: Searches for articles and/or get a summary of such on the English Wikipedia."""
         mode = int(input("Would you like to 1) Search for articles OR 2) Get a summary on an article: "))
@@ -56,6 +63,7 @@ Type `help` for more commands."""
             summary_result = wikipedia.summary(query, sentences = 5, auto_suggest = False)
             print(summary_result)
 
+    # REQUIRES THE 'random' MODULE.
     def do_rps(self, line):
         """Game: Initiates a game of Rock, Paper and Scissors."""
         user_action = input("Choose one of the following; Rock, Paper or Scissors: ")
@@ -79,7 +87,8 @@ Type `help` for more commands."""
                 print("Scissors cut paper. You win!")
             elif computer_action == "Rock":
                 print("Rock breaks scissors. You lose!")
-    
+
+    # A basic changelog command. You can do what the heck you like on this.
     def do_changelog(self, line):
         """System: See the latest update(s) as well as the current version."""
         version = input("What changelog would you like to search for (A1, A2, A2.1): ")
@@ -102,6 +111,7 @@ Type `help` for more commands."""
             print('Fixes: Fixed the `about` command being a bit awkward with indentation. Its info was corrected as well.')
             print('Removals: N/A')
 
+    # Allows for advanced configuration, which saves into the `config.json` file.
     def do_config(self, line):
         """System: Allows for configurating the CLI for the prompt (Default: >> ), Wikipedia (Default: Results = 3, Sentences = 5) or reset to default values."""
         change = int(input("What would you like to change? 1) Prompt, 2) Wikipedia Settings OR 3) Reset to default value(s): "))
@@ -148,7 +158,8 @@ Type `help` for more commands."""
                 json.dump(data, change)
 
             return True
-    
+
+    # REQUIRES THE 'random' MODULE.
     def do_dice(self, line):
         """Tool: Rolls a dice of any one of the following choice(s): d4, d6, d8, d10, d12, d20"""
         choice = input("What dice would you like to roll? ")
@@ -177,5 +188,6 @@ Type `help` for more commands."""
             time.sleep(3)
             print(random.randint(1,20))
 
+# Keeps the CLI active until you terminate or update the config.
 if __name__ == '__main__':
     myCLI().cmdloop()
