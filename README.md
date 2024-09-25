@@ -29,9 +29,9 @@ git clone https://github.com/lpkeates/GenCLI.git
 ### Usage
 In order to run GenCLI, you will need to do the following command:
 ```sh
-python gencli.py
+python cli.py
 ```
-*The filename is whatever you want to name it. The default is gencli.py*
+*The filename is whatever you want to name it. The default is `cli.py`*
 
 # License
 You are free to use this project for whatever you want, but please don't use it illegally!
